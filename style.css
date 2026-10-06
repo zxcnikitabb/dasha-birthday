@@ -1,0 +1,300 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0033 0%, #4a148c 50%, #c2185b 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 60px;
+  height: 75px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: floatUp linear infinite;
+  opacity: 0.7;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 1px;
+  height: 25px;
+  background: rgba(255,255,255,0.5);
+}
+
+.balloon::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 15px;
+  height: 20px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  filter: blur(3px);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-50vh) rotate(5deg); }
+  100% { transform: translateY(-120vh) rotate(-5deg); }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 30px;
+  max-width: 700px;
+  animation: fadeInUp 1.2s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  background: linear-gradient(90deg, #ffd700, #ff69b4, #ffd700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+.name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(4rem, 12vw, 8rem);
+  color: #fff;
+  text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493, 0 0 60px #ff69b4;
+  animation: pulse 2s ease-in-out infinite;
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.cake {
+  width: 180px;
+  height: 100px;
+  margin: 30px auto;
+  position: relative;
+  background: linear-gradient(180deg, #ffb6c1 0%, #ff69b4 100%);
+  border-radius: 10px 10px 15px 15px;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+  animation: cakeBounce 2s ease-in-out infinite;
+}
+
+.cake::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: inset 0 -5px 10px rgba(255,182,193,0.5);
+}
+
+.cake::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 30px;
+  background: repeating-linear-gradient(0deg, #fff 0 5px, #ff1493 5px 10px);
+  border-radius: 3px;
+}
+
+@keyframes cakeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.candle {
+  position: absolute;
+  top: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flame {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 22px;
+  background: radial-gradient(circle at 50% 80%, #fff 0%, #ffd700 40%, #ff8c00 80%, transparent 100%);
+  border-radius: 50% 50% 30% 30%;
+  animation: flicker 0.3s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px #ffa500, 0 0 40px #ff4500;
+}
+
+@keyframes flicker {
+  from { transform: translateX(-50%) scale(1) rotate(-2deg); }
+  to { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+}
+
+.message {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  line-height: 1.7;
+  margin: 30px 0;
+  color: #f8e1f4;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.btn {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 20, 147, 0.8);
+}
+
+.btn:active {
+  transform: translateY(0) scale(1);
+}
+
+.date {
+  margin-top: 30px;
+  font-size: 1rem;
+  letter-spacing: 5px;
+  color: #ffd700;
+  opacity: 0.8;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #4a148c, #c2185b);
+  padding: 40px 35px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 450px;
+  box-shadow: 0 20px 60px rgba(255, 20, 147, 0.5);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  color: #fff;
+}
